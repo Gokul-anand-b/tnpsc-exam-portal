@@ -1,0 +1,46 @@
+1. USERS TABLE
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(100),
+    role VARCHAR(20)
+);
+
+ 2. STUDY MATERIALS TABLE
+CREATE TABLE IF NOT EXISTS study_materials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    link TEXT
+);
+
+3. MOCK TESTS TABLE
+CREATE TABLE IF NOT EXISTS mock_tests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    test_date DATE,
+    instructions TEXT
+);
+
+4. QUESTIONS TABLE
+CREATE TABLE IF NOT EXISTS questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    test_id INT,
+    question TEXT,
+    option_a TEXT,
+    option_b TEXT,
+    option_c TEXT,
+    option_d TEXT,
+    answer VARCHAR(1),
+    FOREIGN KEY (test_id) REFERENCES mock_tests(id) ON DELETE CASCADE
+);
+
+ 5. RESULTS TABLE
+CREATE TABLE IF NOT EXISTS results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    test_id INT,
+    score INT,
+    FOREIGN KEY (student_id) REFERENCES users(id),
+    FOREIGN KEY (test_id) REFERENCES mock_tests(id)
+);
