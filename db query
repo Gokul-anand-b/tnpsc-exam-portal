@@ -1,3 +1,7 @@
+create database karkakasadara;
+USE karkakasadara;
+
+
 1. USERS TABLE
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
